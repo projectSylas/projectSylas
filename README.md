@@ -8,14 +8,8 @@ Introduce
 
 ---------
 
-<p align="center">
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=projectSylas&show_icons=true&theme=radical&include_all_commits=false&count_private=true&hide_rank=false)
-</p>
 
-<p align="center">
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=html,css,glsl,go,shell,astro,assembly,makefile,objective-c,rust,c%2B%2B%0A,c%23&exclude_repo=productive-box&langs_count=10&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-</p>
 
-<p align="center">
 [![trophy](https://github-profile-trophy.vercel.app/?username=projectSylas&theme=flat&column=9)](https://github.com/ryo-ma/github-profile-trophy)
-</p>
