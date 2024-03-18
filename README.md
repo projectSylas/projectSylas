@@ -8,7 +8,7 @@ Introduce
 
 
 ---------
-[![trophy](https://github-profile-trophy.vercel.app/?username=projectSylas&theme=flat&column=7)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://github-profile-trophy.vercel.app/?username=projectSylas&theme=flat&column=9)](https://github.com/ryo-ma/github-profile-trophy)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=projectSylas&show_icons=true&theme=radical&include_all_commits=false&count_private=true&hide_rank=false)
 
