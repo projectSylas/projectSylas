@@ -4,8 +4,11 @@ Introduce
 안녕하세요. 항상 새로움을 추구하고 배우는것을 좋아하는 풀스택 웹/앱 개발자입니다.
 
 다양한 기술스택들을 활용하여 각각의 기술스택들의 장단점을 테스트해본 후 실무에 적용할 수 있을지
-항상 고민하며 생각하는 개발자가 되려 노력하고 있습니다.
+항상 고민하며 발전하는 개발자가 되려 노력하고 있습니다.
 
+e-mail: hjkim7153@gmail.com
+기술블로그: https://projectSylas.github.io
+프로그래머스: https://career.programmers.co.kr/pr/didldldl_7901
 ---------
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=projectSylas&show_icons=true&theme=radical&include_all_commits=false&count_private=true&hide_rank=false)
