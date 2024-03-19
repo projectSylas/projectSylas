@@ -32,3 +32,4 @@ Interesting
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=html,css,glsl,go,shell,astro,assembly,makefile,objective-c,rust,c%2B%2B%0A,c%23&exclude_repo=productive-box&langs_count=10&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 [![trophy](https://github-profile-trophy.vercel.app/?username=projectSylas&theme=flat&column=9)](https://github.com/ryo-ma/github-profile-trophy)
+                                                [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fgjbae1212%2Fhit-counter)](https://github.com/projectSylas)
