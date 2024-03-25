@@ -20,7 +20,7 @@ Introduce
 Interesting
 ---------
 - Server: Linux, Window
-- Lang: Python, JAVA, PHP, Dart, javascript, Typescript
+- Lang: Python, JAVA, PHP, Dart, javascript, Typescript, Pro*c
 - FrameWork: Flutter, Spring Boot
 - Docker, Docker-compose
 - AI
