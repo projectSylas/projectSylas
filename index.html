@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>김형진 포트폴리오</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #21262d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --ai-accent: #a371f7;
+      --ai-accent-dim: #2d1b69;
+      --fs-accent: #58a6ff;
+      --fs-accent-dim: #0d2747;
+      --green: #3fb950;
+      --yellow: #e3b341;
+      --red: #f85149;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ========== HEADER ========== */
+    header {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 20px;
+      text-align: center;
+    }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+    header .meta {
+      color: var(--text-muted);
+      margin-top: 6px;
+      font-size: 0.9rem;
+    }
+    header .links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+    header .links a {
+      color: var(--text-muted);
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+    header .links a:hover { color: var(--text); }
+
+    /* ========== TAB NAV ========== */
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .tab-btn {
+      padding: 12px 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: var(--text); background: var(--bg3); }
+    .tab-btn.active-ai {
+      color: var(--ai-accent);
+      border-bottom-color: var(--ai-accent);
+      background: var(--bg);
+    }
+    .tab-btn.active-fs {
+      color: var(--fs-accent);
+      border-bottom-color: var(--fs-accent);
+      background: var(--bg);
+    }
+
+    /* ========== LAYOUT ========== */
+    .container { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ========== SECTION ========== */
+    .section { margin-bottom: 48px; }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title.ai { color: var(--ai-accent); border-color: var(--ai-accent-dim); }
+    .section-title.fs { color: var(--fs-accent); border-color: var(--fs-accent-dim); }
+    .section-title.neutral { color: var(--text); border-color: var(--border); }
+
+    /* ========== INTRO BOX ========== */
+    .intro-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      line-height: 1.85;
+      color: var(--text-muted);
+    }
+    .intro-box.ai { border-left: 3px solid var(--ai-accent); }
+    .intro-box.fs { border-left: 3px solid var(--fs-accent); }
+
+    /* ========== SKILL TABLE ========== */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 10px;
+    }
+    .skill-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+    .skill-item .skill-cat {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 4px;
+    }
+    .skill-item .skill-cat.ai { color: var(--ai-accent); }
+    .skill-item .skill-cat.fs { color: var(--fs-accent); }
+    .skill-item .skill-cat.neutral { color: var(--yellow); }
+    .skill-item .skill-tags {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== SIDE PROJECT CARDS ========== */
+    .project-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+    }
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: var(--text-muted); }
+    .project-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .project-card h4 .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .badge.ai { background: var(--ai-accent-dim); color: var(--ai-accent); }
+    .badge.fs { background: var(--fs-accent-dim); color: var(--fs-accent); }
+    .project-card p {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .project-card ul {
+      padding-left: 16px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .project-card ul li { margin-bottom: 3px; }
+    .stack-line {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      margin-top: 8px;
+    }
+    .stack-line span { color: var(--text); font-weight: 600; }
+
+    /* ========== TIMELINE (CAREER) ========== */
+    .company-block { margin-bottom: 36px; }
+    .company-header {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .company-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .company-period {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .company-badge {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+    .badge-current { background: #1a3a20; color: var(--green); }
+    .badge-prev { background: var(--bg3); color: var(--text-muted); }
+
+    .project-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      border-left: 3px solid var(--border);
+      transition: border-left-color 0.2s;
+    }
+    .project-item:hover { border-left-color: var(--text-muted); }
+    .project-item .proj-header {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .proj-title { font-weight: 700; font-size: 0.95rem; }
+    .proj-period { font-size: 0.8rem; color: var(--text-muted); }
+    .proj-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--bg3);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .proj-body {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+    }
+    .proj-body ul { padding-left: 16px; }
+    .proj-body ul li { margin-bottom: 3px; }
+    .proj-stack {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .proj-stack strong { color: var(--text); }
+
+    /* ========== EDUCATION ========== */
+    .edu-list { display: flex; flex-direction: column; gap: 10px; }
+    .edu-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .edu-school { font-weight: 700; font-size: 0.97rem; }
+    .edu-major { font-size: 0.87rem; color: var(--text-muted); }
+    .edu-period { font-size: 0.8rem; color: var(--text-muted); margin-left: auto; }
+    .edu-note {
+      width: 100%;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ========== PRINT ========== */
+    @media print {
+      body { background: #fff; color: #000; font-size: 11pt; }
+      header { background: #f5f5f5; border-bottom: 1px solid #ddd; }
+      .tab-nav { display: none !important; }
+      .tab-content { display: block !important; }
+      #tab-ai { display: block !important; }
+      #tab-fs { display: none !important; }
+      .bg2, .project-item, .skill-item, .project-card, .edu-item, .intro-box {
+        background: #fafafa !important;
+        border-color: #ddd !important;
+      }
+      .text-muted, .proj-body, .proj-stack, .edu-major, .edu-period,
+      .company-period, .proj-period, .proj-role { color: #555 !important; }
+      .ai-accent, .section-title.ai { color: #6b21a8 !important; }
+      .fs-accent, .section-title.fs { color: #1d4ed8 !important; }
+      a { color: inherit; }
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .tab-btn { padding: 10px 18px; font-size: 0.85rem; }
+      .project-cards { grid-template-columns: 1fr; }
+      .skill-grid { grid-template-columns: 1fr 1fr; }
+      .edu-period { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>김형진 <span style="font-size:1.1rem;color:var(--text-muted);font-weight:400;">Hyungjin Kim</span></h1>
+  <div class="meta">경력 약 6년 · 소프트웨어 엔지니어</div>
+  <div class="links">
+    <a href="mailto:didldldl@naver.com">✉ didldldl@naver.com</a>
+    <a href="https://github.com/projectSylas" target="_blank">⚙ github.com/projectSylas</a>
+  </div>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active-ai" onclick="switchTab('ai')">AI / LLM 버전</button>
+  <button class="tab-btn" onclick="switchTab('fs')">풀스택 버전</button>
+</nav>
+
+<!-- ===================== TAB: AI ===================== -->
+<div id="tab-ai" class="tab-content active">
+<div class="container">
+
+  <!-- 소개 -->
+  <div class="section">
+    <div class="section-title ai">소개</div>
+    <div class="intro-box ai">
+      AI/LLM 파이프라인 설계와 풀스택 개발 양쪽에 걸친 엔지니어입니다.<br>
+      현재 콘넥트에서 Prefect 메달리온 아키텍처 기반 <strong>AI 시나리오 분석 및 프리비즈 영상 자동 생성 파이프라인</strong>을 설계·개발하고 있습니다.<br>
+      멀티 LLM 에이전트 오케스트레이션, LangChain LCEL + Pydantic Structured Output, Langfuse 실험 추적 등 LLM 프로덕션 파이프라인 전반을 직접 구축했으며,
+      핀테크(KIS정보통신) 대용량 배치 처리, 크롤러/ETL 자동화, 모바일 앱 배포까지 다양한 도메인 경험을 보유하고 있습니다.
+    </div>
+  </div>
+
+  <!-- 핵심 기술 -->
+  <div class="section">
+    <div class="section-title ai">AI/LLM 핵심 기술</div>
+    <div class="skill-grid">
+      <div class="skill-item">
+        <div class="skill-cat ai">LLM / AI</div>
+        <div class="skill-tags">OpenAI GPT-4o · LangChain LCEL · Pydantic Structured Output · Langfuse · FinBERT · TimesFM · LSTM · Transformer</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat ai">오케스트레이션</div>
+        <div class="skill-tags">Prefect · 멀티에이전트 병렬/순차 오케스트레이션</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">영상 / 미디어</div>
+        <div class="skill-tags">Kling AI (PiAPI) · FFmpeg · Apple Vision Kit · Clova Vision OCR</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">백엔드</div>
+        <div class="skill-tags">Python · Django REST Framework</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">데이터베이스</div>
+        <div class="skill-tags">PostgreSQL · Oracle · MySQL · MariaDB · Tibero</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">인프라</div>
+        <div class="skill-tags">Docker · AWS · Linux · AIX · Nginx</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">기타</div>
+        <div class="skill-tags">React Native · Flutter · Java(Spring) · PHP · C(Pro C)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI 사이드 프로젝트 -->
+  <div class="section">
+    <div class="section-title ai">AI 사이드 프로젝트</div>
+    <div class="project-cards">
+      <div class="project-card">
+        <h4>AI 자동매매 시스템 <span class="badge ai">개인</span></h4>
+        <p>주식·암호화폐 자동매매 시스템 설계 및 개발</p>
+        <ul>
+          <li>TimesFM / LSTM / Transformer 가격 예측 모델 실험</li>
+          <li>FinBERT 뉴스 감성 분석 → 매매 신호 결합</li>
+          <li>Backtrader 백테스팅, Alpaca / Binance / MEXC API 연동</li>
+          <li>PostgreSQL 거래 로그, Slack 알림, Docker 배포</li>
+        </ul>
+        <div class="stack-line"><span>Stack:</span> Python, LSTM, Transformer, TimesFM, FinBERT, Backtrader, PostgreSQL, Docker</div>
+      </div>
+      <div class="project-card">
+        <h4>Sword-Macro <span class="badge ai">개인</span></h4>
+        <p>강화학습 기반 카카오톡 '검키우기' 게임봇</p>
+        <ul>
+          <li>PPO 알고리즘(Stable Baselines3) 기반 RL 에이전트</li>
+          <li>게임 화면 데이터 파싱 → Gym 환경 설계</li>
+          <li>에피소드 보상 설계 및 학습 루프 자동화</li>
+        </ul>
+        <div class="stack-line"><span>Stack:</span> Python, PPO, Stable Baselines3, OpenAI Gym</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 경력 -->
+  <div class="section">
+    <div class="section-title ai">경력</div>
+
+    <!-- 콘넥트 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">주식회사 콘넥트</span>
+        <span class="company-period">2025.01 ~ 현재</span>
+        <span class="company-badge badge-current">재직중 · 정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">AI 시나리오 분석 & 프리비즈 영상 자동 생성 파이프라인</span>
+          <span class="proj-period">2025.06 ~ 현재</span>
+          <span class="proj-role">설계 및 개발 담당</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>Prefect 메달리온 아키텍처(Bronze→Silver→Gold→Previs→VideoGen) 기반 엔드투엔드 파이프라인</li>
+            <li>5 LLM 에이전트(character/world/story/action/visual_direction) 병렬·순차 오케스트레이션 + shot_composer × 4 intent 병렬</li>
+            <li>LangChain LCEL + Pydantic Structured Output, Langfuse TraceContext 실험 추적·프롬프트 버전 관리</li>
+            <li>Kling AI(PiAPI 프록시) 클라이언트, FFmpeg 샷 병합, 다중 포맷 파서(html/txt/pdf/docx), MD5 브론즈 캐싱</li>
+            <li>ad / trailer / summary / cinematic 4가지 intent별 프리비즈 자동 생성</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Python, Prefect, OpenAI GPT-4o, LangChain, Langfuse, Kling AI, FFmpeg, Pydantic, Docker</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">콘텐츠 엔딩 크레딧 OCR 자동화</span>
+          <span class="proj-period">2025.01 ~ 2025.05</span>
+          <span class="proj-role">설계 및 개발 담당</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>Apple Vision Kit + Clova Vision 이중 OCR 파이프라인 설계</li>
+            <li>NER 기반 직책·인물명 분류 및 정제, PostgreSQL 자동 적재 ETL</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Python, Apple Vision Kit, Clova Vision OCR, NLP/NER, Django, PostgreSQL</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">클레딧(Cleddit) 플랫폼 개발</span>
+          <span class="proj-period">2025.01 ~ 현재</span>
+          <span class="proj-role">팀 내 주요 개발자 (최다 커밋 기여)</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>Django REST Framework 백엔드: N+1 쿼리 최적화, DISTINCT ON 커서 페이지네이션</li>
+            <li>React Native 앱: BottomSheet, Skeleton UI, 무한스크롤, Android 15 엣지투엣지</li>
+            <li>NICE 간편인증, 카카오 소셜 로그인, Prefect ETL (tvwiki/IMSDB)</li>
+            <li>App Store / Google Play Store 배포 관리</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Python, Django REST Framework, React Native, PostgreSQL, Prefect, Docker, AWS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KIS -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">KIS정보통신(주)</span>
+        <span class="company-period">2024.05 ~ 2025.01 (9개월)</span>
+        <span class="company-badge badge-prev">정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">원장 배치 개발</span>
+          <span class="proj-period">2024.05 ~ 2024.12</span>
+          <span class="proj-role">담당 개발자로 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>실시간 승인서버(Stratus) ↔ 정보계(Oracle) 양방향 원장 동기화 TCP 소켓 프로세스 개발</li>
+            <li>지급 결제 흐름(카드결제 → 가맹점 → VAN → 카드사 → 정산) 구현</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> C(Pro C), Python, Oracle, Tibero, Linux, AIX</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">거래내역 배치 개발</span>
+          <span class="proj-period">2024.05 ~ 2024.12</span>
+          <span class="proj-role">담당 개발자로 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>VAN 하루 1,000만 건 이상 대용량 거래내역 배치 프로세스 개발·유지보수</li>
+            <li>실시간 승인서버 → 정보계 단방향 TCP 소켓 프로세스 구현</li>
+            <li>Python으로 타VAN사 거래내역 스크래핑 자동화, DBA 업무 자동화</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> C(Pro C), Python, Oracle, Tibero, Linux, AIX</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 서울애널리티카 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">주식회사 서울애널리티카</span>
+        <span class="company-period">2022.06 ~ 2023.12 (1년 7개월)</span>
+        <span class="company-badge badge-prev">정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">TG삼보컴퓨터 내부 프로젝트 관리</span>
+          <span class="proj-period">2023.04 ~ 2023.12</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>TGS 내 물류/서비스/회원 관리 기능 추가·유지보수 (풀스택)</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> Java(Spring), JSP, Nexacro, MySQL, Oracle, SVN</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">TG내 서버 인프라 관리</span>
+          <span class="proj-period">2023.04 ~ 2023.12</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>Linux 서버 전담 유지보수: 소스 백업, 로그 관리, 용량 관리, 네트워크 작업</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> Windows Server, Linux</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">TG삼보컴퓨터 ↔ 외부업체 API Web Service 코어 개발</span>
+          <span class="proj-period">2023.06 ~ 2023.08</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>Amway, Epson, Ilyang Logis 등 외부업체 연동 REST API 전환 (기존 DB 다이렉트 방식)</li>
+            <li>토큰 관리, Logging, 보안 처리 코어 설계</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Java(Spring), JSP, Nexacro, Oracle</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">Web Crawler 신규 개발</span>
+          <span class="proj-period">2022.08 ~ 2023.05</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>데이터 분석팀 전용 Twitter, Instagram 등 private site 크롤러 개발·유지보수</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> Python, Node.js, React, Docker, MySQL, Linux</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">인하대 PHP Web 온프레미스 서버 이전</span>
+          <span class="proj-period">2022.07 ~ 2022.08</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>인하대 웹 서버를 SA GCP 서버로 이전, 도메인·호스팅 관리</li>
+            <li>Docker 이미지 기반 서버 구성</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, Docker, GCP, Linux, MySQL, HTML, JavaScript</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">위즈바이오 Flutter 앱 개발 / 데이터 관리 플랫폼 유지보수</span>
+          <span class="proj-period">2022.06 ~ 2022.12</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>App Store / Play Store 출시 및 운영</li>
+            <li>Flutter(Dart) 신규 개발, BLE 디바이스 통신 구현</li>
+            <li>C# 알고리즘을 Dart로 포팅</li>
+            <li>Django 데이터 플랫폼 기능 추가·앱-API 연동</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Flutter(Dart), BLE, C#→Dart 포팅, Django, AWS, Android Studio, Xcode, MySQL</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 에스아이알소프트 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">(주)에스아이알소프트</span>
+        <span class="company-period">2021.03 ~ 2022.06 (1년 4개월)</span>
+        <span class="company-badge badge-prev">정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">CMS 구조 개편/리팩토링</span>
+          <span class="proj-period">2022.04 ~ 2022.05</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>절차지향 레거시 스파게티 코드 → MVC2 패턴 객체지향으로 리팩토링</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, AWS Lightsail, Amazon Linux, Nginx, MariaDB, Git</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">CMS 자동 업데이트 기능 추가</span>
+          <span class="proj-period">2022.02 ~ 2022.04</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>Git API 기반 버전 체크 → FTP/SFTP 자동 배포 (수동 덮어씌우기 방식 대체)</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, Nginx, Docker(local dev), MariaDB</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">테스트 이벤트 관리 프로젝트</span>
+          <span class="proj-period">2021.09 ~ 2021.11</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>심리테스트 형식 이벤트를 관리자가 직접 추가·수정할 수 있는 기능 개발</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, AWS Lightsail, Amazon Linux, Nginx, MariaDB, Git</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">간편인증모듈 기능 추가/배포</span>
+          <span class="proj-period">2021.06 ~ 2021.08</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>inicis 간편인증 모듈 CMS 연동 및 오픈소스 배포</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, AWS Lightsail, Amazon Linux, Nginx, MariaDB, Git</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 한경아이티에스 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">(주)한경아이티에스</span>
+        <span class="company-period">2020.02 ~ 2021.02 (1년 1개월)</span>
+        <span class="company-badge badge-prev">정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">웹 서버 이전용 신규 서버 구축</span>
+          <span class="proj-period">2020.12 ~ 2021.01</span>
+          <span class="proj-role">개발 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>신규 Linux(CentOS) 서버 구축 및 기존 프로젝트 이전</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> Linux(CentOS 5 → CentOS 7), Apache, MySQL, Oracle</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">기존 그룹웨어(인트라넷) 웹 사이트 리뉴얼</span>
+          <span class="proj-period">2020.05 ~ 2020.07</span>
+          <span class="proj-role">개발 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>사내 인트라넷 리뉴얼 및 기능 추가 개발 (풀스택)</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, JavaScript(jQuery), Linux, MySQL, Oracle</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">대관 서비스 개발</span>
+          <span class="proj-period">2020.04 ~ 2020.05</span>
+          <span class="proj-role">개발 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>대관 서비스 개발 프로젝트 (풀스택)</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, JavaScript(jQuery), Linux, MySQL, Oracle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 학력 -->
+  <div class="section">
+    <div class="section-title ai">학력</div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <span class="edu-school">조선대학교</span>
+        <span class="edu-major">컴퓨터공학과 졸업</span>
+        <span class="edu-period">2016.12 ~ 2019.02</span>
+        <div class="edu-note">졸업작품: 스마트 블라인더 (아두이노 IoT 자동 블라인드)</div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-school">서영대학교</span>
+        <span class="edu-major">스마트IT과 졸업</span>
+        <span class="edu-period">2012.02 ~ 2016.02</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- end tab-ai -->
+
+
+<!-- ===================== TAB: FULLSTACK ===================== -->
+<div id="tab-fs" class="tab-content">
+<div class="container">
+
+  <!-- 소개 -->
+  <div class="section">
+    <div class="section-title fs">소개</div>
+    <div class="intro-box fs">
+      Python/Django 백엔드, React Native/Flutter 모바일, Java(Spring) 등 다양한 스택을 경험한 풀스택 엔지니어입니다.<br>
+      현재 콘넥트에서 클레딧(Cleddit) 플랫폼의 <strong>Django REST API와 React Native 앱을 팀 내 최다 커밋 기여자</strong>로 개발하고 있으며, Prefect ETL 파이프라인 및 AI 시나리오 분석 파이프라인도 함께 담당합니다.<br>
+      핀테크(KIS정보통신) 대용량 배치 처리, 크롤러 자동화, 서버 인프라 이전, App Store / Play Store 배포까지 다양한 도메인 경험을 보유하고 있습니다.
+    </div>
+  </div>
+
+  <!-- 핵심 기술 -->
+  <div class="section">
+    <div class="section-title fs">풀스택 핵심 기술</div>
+    <div class="skill-grid">
+      <div class="skill-item">
+        <div class="skill-cat fs">백엔드</div>
+        <div class="skill-tags">Python · Django REST Framework · Java(Spring) · PHP · Node.js</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat fs">모바일</div>
+        <div class="skill-tags">React Native · Flutter(Dart) · BLE 통신 · App Store/Play Store 배포</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat fs">프론트엔드</div>
+        <div class="skill-tags">React · JSP · Nexacro · jQuery · HTML/CSS/JavaScript</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">오케스트레이션/ETL</div>
+        <div class="skill-tags">Prefect · LangChain · OpenAI GPT-4o · Langfuse</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">데이터베이스</div>
+        <div class="skill-tags">PostgreSQL · Oracle · MySQL · MariaDB · Tibero</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">인프라</div>
+        <div class="skill-tags">Docker · AWS · GCP · Linux(CentOS/Amazon) · AIX · Nginx · Apache</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-cat neutral">기타</div>
+        <div class="skill-tags">FFmpeg · Apple Vision Kit · Clova Vision OCR · C(Pro C)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 풀스택 사이드 프로젝트 -->
+  <div class="section">
+    <div class="section-title fs">풀스택 사이드 프로젝트</div>
+    <div class="project-cards">
+      <div class="project-card">
+        <h4>AutoBooking <span class="badge fs">개인</span></h4>
+        <p>방탈출 예약 자동화 봇 (Playwright 기반)</p>
+        <ul>
+          <li>병렬 예약 자동화, Shadow DOM 지원</li>
+          <li>비회원 예약 플로우 처리</li>
+          <li>마감일 자동 감지, 테스트 모드 지원</li>
+          <li>uv 기반 경량 패키징</li>
+        </ul>
+        <div class="stack-line"><span>Stack:</span> Python, Playwright, uv</div>
+      </div>
+      <div class="project-card">
+        <h4>HJ-LCK <span class="badge fs">개인</span></h4>
+        <p>LCK 경기 자동 티켓팅 매크로</p>
+        <ul>
+          <li>Docker 기반 배포로 어디서나 실행 가능</li>
+          <li>빠른 폼 입력·좌석 선택 자동화</li>
+        </ul>
+        <div class="stack-line"><span>Stack:</span> Python, Docker</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 경력 (풀스택 탭 - 동일한 경력) -->
+  <div class="section">
+    <div class="section-title fs">경력</div>
+
+    <!-- 콘넥트 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">주식회사 콘넥트</span>
+        <span class="company-period">2025.01 ~ 현재</span>
+        <span class="company-badge badge-current">재직중 · 정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">AI 시나리오 분석 & 프리비즈 영상 자동 생성 파이프라인</span>
+          <span class="proj-period">2025.06 ~ 현재</span>
+          <span class="proj-role">설계 및 개발 담당</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>Prefect 메달리온 아키텍처(Bronze→Silver→Gold→Previs→VideoGen) 기반 엔드투엔드 파이프라인</li>
+            <li>5 LLM 에이전트(character/world/story/action/visual_direction) 병렬·순차 오케스트레이션 + shot_composer × 4 intent 병렬</li>
+            <li>LangChain LCEL + Pydantic Structured Output, Langfuse TraceContext 실험 추적·프롬프트 버전 관리</li>
+            <li>Kling AI(PiAPI 프록시) 클라이언트, FFmpeg 샷 병합, 다중 포맷 파서(html/txt/pdf/docx), MD5 브론즈 캐싱</li>
+            <li>ad / trailer / summary / cinematic 4가지 intent별 프리비즈 자동 생성</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Python, Prefect, OpenAI GPT-4o, LangChain, Langfuse, Kling AI, FFmpeg, Pydantic, Docker</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">콘텐츠 엔딩 크레딧 OCR 자동화</span>
+          <span class="proj-period">2025.01 ~ 2025.05</span>
+          <span class="proj-role">설계 및 개발 담당</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>Apple Vision Kit + Clova Vision 이중 OCR 파이프라인 설계</li>
+            <li>NER 기반 직책·인물명 분류 및 정제, PostgreSQL 자동 적재 ETL</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Python, Apple Vision Kit, Clova Vision OCR, NLP/NER, Django, PostgreSQL</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">클레딧(Cleddit) 플랫폼 개발</span>
+          <span class="proj-period">2025.01 ~ 현재</span>
+          <span class="proj-role">팀 내 주요 개발자 (최다 커밋 기여)</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>Django REST Framework 백엔드: N+1 쿼리 최적화, DISTINCT ON 커서 페이지네이션</li>
+            <li>React Native 앱: BottomSheet, Skeleton UI, 무한스크롤, Android 15 엣지투엣지</li>
+            <li>NICE 간편인증, 카카오 소셜 로그인, Prefect ETL (tvwiki/IMSDB)</li>
+            <li>App Store / Google Play Store 배포 관리</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Python, Django REST Framework, React Native, PostgreSQL, Prefect, Docker, AWS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KIS -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">KIS정보통신(주)</span>
+        <span class="company-period">2024.05 ~ 2025.01 (9개월)</span>
+        <span class="company-badge badge-prev">정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">원장 배치 개발</span>
+          <span class="proj-period">2024.05 ~ 2024.12</span>
+          <span class="proj-role">담당 개발자로 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>실시간 승인서버(Stratus) ↔ 정보계(Oracle) 양방향 원장 동기화 TCP 소켓 프로세스 개발</li>
+            <li>지급 결제 흐름(카드결제 → 가맹점 → VAN → 카드사 → 정산) 구현</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> C(Pro C), Python, Oracle, Tibero, Linux, AIX</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">거래내역 배치 개발</span>
+          <span class="proj-period">2024.05 ~ 2024.12</span>
+          <span class="proj-role">담당 개발자로 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>VAN 하루 1,000만 건 이상 대용량 거래내역 배치 프로세스 개발·유지보수</li>
+            <li>실시간 승인서버 → 정보계 단방향 TCP 소켓 프로세스 구현</li>
+            <li>Python으로 타VAN사 거래내역 스크래핑 자동화, DBA 업무 자동화</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> C(Pro C), Python, Oracle, Tibero, Linux, AIX</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 서울애널리티카 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">주식회사 서울애널리티카</span>
+        <span class="company-period">2022.06 ~ 2023.12 (1년 7개월)</span>
+        <span class="company-badge badge-prev">정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">TG삼보컴퓨터 내부 프로젝트 관리</span>
+          <span class="proj-period">2023.04 ~ 2023.12</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>TGS 내 물류/서비스/회원 관리 기능 추가·유지보수 (풀스택)</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> Java(Spring), JSP, Nexacro, MySQL, Oracle, SVN</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">TG내 서버 인프라 관리</span>
+          <span class="proj-period">2023.04 ~ 2023.12</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>Linux 서버 전담 유지보수: 소스 백업, 로그 관리, 용량 관리, 네트워크 작업</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> Windows Server, Linux</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">TG삼보컴퓨터 ↔ 외부업체 API Web Service 코어 개발</span>
+          <span class="proj-period">2023.06 ~ 2023.08</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>Amway, Epson, Ilyang Logis 등 외부업체 연동 REST API 전환</li>
+            <li>토큰 관리, Logging, 보안 처리 코어 설계</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Java(Spring), JSP, Nexacro, Oracle</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">Web Crawler 신규 개발</span>
+          <span class="proj-period">2022.08 ~ 2023.05</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>데이터 분석팀 전용 Twitter, Instagram 등 private site 크롤러 개발·유지보수</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> Python, Node.js, React, Docker, MySQL, Linux</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">인하대 PHP Web 온프레미스 서버 이전</span>
+          <span class="proj-period">2022.07 ~ 2022.08</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>인하대 웹 서버를 SA GCP 서버로 이전, 도메인·호스팅 관리</li>
+            <li>Docker 이미지 기반 서버 구성</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, Docker, GCP, Linux, MySQL, HTML, JavaScript</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">위즈바이오 Flutter 앱 개발 / 데이터 관리 플랫폼 유지보수</span>
+          <span class="proj-period">2022.06 ~ 2022.12</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul>
+            <li>App Store / Play Store 출시 및 운영</li>
+            <li>Flutter(Dart) 신규 개발, BLE 디바이스 통신 구현</li>
+            <li>C# 알고리즘을 Dart로 포팅</li>
+            <li>Django 데이터 플랫폼 기능 추가·앱-API 연동</li>
+          </ul>
+          <div class="proj-stack"><strong>Stack:</strong> Flutter(Dart), BLE, C#→Dart 포팅, Django, AWS, Android Studio, Xcode, MySQL</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 에스아이알소프트 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">(주)에스아이알소프트</span>
+        <span class="company-period">2021.03 ~ 2022.06 (1년 4개월)</span>
+        <span class="company-badge badge-prev">정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">CMS 구조 개편/리팩토링</span>
+          <span class="proj-period">2022.04 ~ 2022.05</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>절차지향 레거시 스파게티 코드 → MVC2 패턴 객체지향으로 리팩토링</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, AWS Lightsail, Amazon Linux, Nginx, MariaDB, Git</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">CMS 자동 업데이트 기능 추가</span>
+          <span class="proj-period">2022.02 ~ 2022.04</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>Git API 기반 버전 체크 → FTP/SFTP 자동 배포 (수동 덮어씌우기 방식 대체)</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, Nginx, Docker(local dev), MariaDB</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">테스트 이벤트 관리 프로젝트</span>
+          <span class="proj-period">2021.09 ~ 2021.11</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>심리테스트 형식 이벤트를 관리자가 직접 추가·수정할 수 있는 기능 개발</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, AWS Lightsail, Amazon Linux, Nginx, MariaDB, Git</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">간편인증모듈 기능 추가/배포</span>
+          <span class="proj-period">2021.06 ~ 2021.08</span>
+          <span class="proj-role">담당 개발자</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>inicis 간편인증 모듈 CMS 연동 및 오픈소스 배포</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, AWS Lightsail, Amazon Linux, Nginx, MariaDB, Git</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 한경아이티에스 -->
+    <div class="company-block">
+      <div class="company-header">
+        <span class="company-name">(주)한경아이티에스</span>
+        <span class="company-period">2020.02 ~ 2021.02 (1년 1개월)</span>
+        <span class="company-badge badge-prev">정규직</span>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">웹 서버 이전용 신규 서버 구축</span>
+          <span class="proj-period">2020.12 ~ 2021.01</span>
+          <span class="proj-role">개발 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>신규 Linux(CentOS) 서버 구축 및 기존 프로젝트 이전</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> Linux(CentOS 5 → CentOS 7), Apache, MySQL, Oracle</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">기존 그룹웨어(인트라넷) 웹 사이트 리뉴얼</span>
+          <span class="proj-period">2020.05 ~ 2020.07</span>
+          <span class="proj-role">개발 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>사내 인트라넷 리뉴얼 및 기능 추가 개발 (풀스택)</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, JavaScript(jQuery), Linux, MySQL, Oracle</div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div class="proj-header">
+          <span class="proj-title">대관 서비스 개발</span>
+          <span class="proj-period">2020.04 ~ 2020.05</span>
+          <span class="proj-role">개발 참여</span>
+        </div>
+        <div class="proj-body">
+          <ul><li>대관 서비스 개발 프로젝트 (풀스택)</li></ul>
+          <div class="proj-stack"><strong>Stack:</strong> PHP, JavaScript(jQuery), Linux, MySQL, Oracle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 학력 -->
+  <div class="section">
+    <div class="section-title fs">학력</div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <span class="edu-school">조선대학교</span>
+        <span class="edu-major">컴퓨터공학과 졸업</span>
+        <span class="edu-period">2016.12 ~ 2019.02</span>
+        <div class="edu-note">졸업작품: 스마트 블라인더 (아두이노 IoT 자동 블라인드)</div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-school">서영대학교</span>
+        <span class="edu-major">스마트IT과 졸업</span>
+        <span class="edu-period">2012.02 ~ 2016.02</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- end tab-fs -->
+
+<script>
+  function switchTab(tab) {
+    document.getElementById('tab-ai').classList.remove('active');
+    document.getElementById('tab-fs').classList.remove('active');
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.classList.remove('active-ai', 'active-fs');
+    });
+
+    document.getElementById('tab-' + tab).classList.add('active');
+    const btns = document.querySelectorAll('.tab-btn');
+    if (tab === 'ai') {
+      btns[0].classList.add('active-ai');
+    } else {
+      btns[1].classList.add('active-fs');
+    }
+  }
+</script>
+
+</body>
+</html>
